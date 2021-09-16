@@ -40,22 +40,22 @@ application.add_url_rule('/<username>', 'hello', (lambda username:
 
 def getDances():
     dances = []
-    db = MySQLdb.connect(host=RDS_HOSTNAME,
-        port=3306,
-        user=RDS_USERNAME,
-        passwd=RDS_PASSWORD,
-        db=RDS_DB_NAME,
-        autocommit=True,
-        use_unicode=True
-        )
-    cursor = db.cursor()
-    query = """SELECT * FROM dances;"""
-    cursor.execute(query)
-    dances = cursor.fetchall()
+    # db = MySQLdb.connect(host=RDS_HOSTNAME,
+    #     port=3306,
+    #     user=RDS_USERNAME,
+    #     passwd=RDS_PASSWORD,
+    #     db=RDS_DB_NAME,
+    #     autocommit=True,
+    #     use_unicode=True
+    #     )
+    # cursor = db.cursor()
+    # query = """SELECT * FROM dances;"""
+    # cursor.execute(query)
+    # dances = cursor.fetchall()
 
-    # Convert it into a list for readability
-    dances = [list(l) for l in dances]
-    print('get Dances from mysql DB: ', dances)
+    # # Convert it into a list for readability
+    # dances = [list(l) for l in dances]
+    # print('get Dances from mysql DB: ', dances)
     return dances
 
 
