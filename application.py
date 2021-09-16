@@ -1,15 +1,15 @@
 from flask import Flask, render_template
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 import os
-import MySQLdb
+# import MySQLdb
 
-# load_dotenv()
+load_dotenv()
 
-# RDS_HOSTNAME = os.getenv("RDS_HOSTNAME")
-# RDS_USERNAME = os.getenv("RDS_USERNAME")
-# RDS_PASSWORD = os.getenv("RDS_PASSWORD")
-# RDS_PORT = os.getenv("RDS_PORT")
-# RDS_DB_NAME = os.getenv("RDS_DB_NAME")
+RDS_HOSTNAME = os.getenv("RDS_HOSTNAME")
+RDS_USERNAME = os.getenv("RDS_USERNAME")
+RDS_PASSWORD = os.getenv("RDS_PASSWORD")
+RDS_PORT = os.getenv("RDS_PORT")
+RDS_DB_NAME = os.getenv("RDS_DB_NAME")
 
 
 # print a nice greeting.
@@ -39,22 +39,23 @@ application.add_url_rule('/<username>', 'hello', (lambda username:
     header_text + say_hello(username) + home_link + footer_text))
 
 def getDances():
-    db = MySQLdb.connect(host=RDS_HOSTNAME,
-        port=3306,
-        user=RDS_USERNAME,
-        passwd=RDS_PASSWORD,
-        db=RDS_DB_NAME,
-        autocommit=True,
-        use_unicode=True
-        )
-    cursor = db.cursor()
-    query = """SELECT * FROM dances;"""
-    cursor.execute(query)
-    dances = cursor.fetchall()
+    dances = []
+    # db = MySQLdb.connect(host=RDS_HOSTNAME,
+    #     port=3306,
+    #     user=RDS_USERNAME,
+    #     passwd=RDS_PASSWORD,
+    #     db=RDS_DB_NAME,
+    #     autocommit=True,
+    #     use_unicode=True
+    #     )
+    # cursor = db.cursor()
+    # query = """SELECT * FROM dances;"""
+    # cursor.execute(query)
+    # dances = cursor.fetchall()
 
-    # Convert it into a list for readability
-    dances = [list(l) for l in dances]
-    print('get Dances from mysql DB: ', dances)
+    # # Convert it into a list for readability
+    # dances = [list(l) for l in dances]
+    # print('get Dances from mysql DB: ', dances)
     return dances
 
 
