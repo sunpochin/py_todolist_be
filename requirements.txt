@@ -1,3 +1,6 @@
+uvicorn==0.15.0
 pydantic==1.8.2
-peewee==3.14.4
+SQLAlchemy==1.4.23
 fastapi==0.68.1
+fastapi_utils==0.2.1
+python-dotenv==0.19.0

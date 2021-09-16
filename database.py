@@ -1,16 +1,24 @@
-from peewee import *
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+import config
 
-user = 'root'
-password = 'root'
-db_name = 'fastapi_contact'
+DATABASE_URL = config.DATABASE_URL
+print('DB URL:', DATABASE_URL)
+db_engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=db_engine)
 
-conn = MySQLDatabase(
-    db_name, user=user,
-    password=password,
-    host='localhost'
-)
+Base = declarative_base()
 
-class BaseModel(Model):
-    class Meta:
-        database = conn
 
+def get_db():
+    """
+    Function to generate db session
+    :return: Session
+    """
+    db = None
+    try:
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()
