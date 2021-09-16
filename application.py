@@ -42,12 +42,12 @@ def index():
         use_unicode=True
         )
     cursor = db.cursor()
-    query = """SELECT * FROM dances;"""
+    query = """SELECT * FROM languages;"""
     cursor.execute(query)
-    dances = cursor.fetchall()
+    languages = cursor.fetchall()
 
-    # Convert it into a list for readability
-    dances = [list(l) for l in dances]
+    # Convert to a list for better readability
+    languages = [list(l) for l in languages]
  
-    return render_template('index.html', dances=dances)
+    return render_template('index.html', languages=languages)
 
