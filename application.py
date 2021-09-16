@@ -33,7 +33,7 @@ if __name__ == "__main__":
     application.debug = True
     application.run()
 
-    
+
 # import pymysql
 # pymysql.install_as_MySQLdb()
 
