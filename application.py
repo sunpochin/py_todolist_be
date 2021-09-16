@@ -1,3 +1,6 @@
+import pymysql
+pymysql.install_as_MySQLdb()
+
 from dotenv import load_dotenv
 import os
 
@@ -24,12 +27,13 @@ def index():
         use_unicode=True
         )
     cursor = db.cursor()
-    query = """SELECT * FROM languages;"""
+    query = """SELECT * FROM dances;"""
     cursor.execute(query)
-    languages = cursor.fetchall()
+    dances = cursor.fetchall()
+    print('dances: ', dances)
 
     # Convert to a list for better readability
-    languages = [list(l) for l in languages]
+    dances = [list(l) for l in dances]
  
-    return render_template('index.html', languages=languages)
+    return render_template('index.html', dances=dances)
 
