@@ -134,9 +134,18 @@ def getDances():
             """USE pachinko;"""
         )
         dances = conn.execute(
+            """DROP TABLE dance;"""
+        )
+        dances = conn.execute(
             "CREATE TABLE IF NOT EXISTS dance "
-            "( dance_id SERIAL NOT NULL, "
-            "dancestyle CHAR(30) NOT NULL, PRIMARY KEY (dance_id) );"
+            "(dance_id SERIAL NOT NULL, "
+            "dance_style CHAR(30) NOT NULL, PRIMARY KEY (dance_id) );"
+        )
+        dances = conn.execute(
+            "INSERT INTO dance (dance_id, dance_style) VALUES (1, 'swing');"
+        )
+        dances = conn.execute(
+            "INSERT INTO dance (dance_id, dance_style) VALUES (2, 'salsa');"
         )
         dances = conn.execute(
             """SELECT * FROM dance;"""
