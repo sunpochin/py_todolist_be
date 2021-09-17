@@ -99,7 +99,7 @@ def init_tcp_connection_engine(db_config):
             password=db_pass,  # e.g. "my-database-password"
             host=db_hostname,  # e.g. "127.0.0.1"
             port=db_port,  # e.g. 3306
-            database=db_name,  # e.g. "my-database-name"
+            # database=db_name,  # e.g. "my-database-name"
         ),
         **db_config
     )
@@ -128,7 +128,18 @@ def getDances():
     # dances = cursor.fetchall()
     with db.connect() as conn:
         dances = conn.execute(
-            """SELECT * FROM dances;"""
+            """CREATE DATABASE IF NOT EXISTS pachinko;"""
+        )
+        dances = conn.execute(
+            """USE pachinko;"""
+        )
+        dances = conn.execute(
+            "CREATE TABLE IF NOT EXISTS dance "
+            "( dance_id SERIAL NOT NULL, "
+            "dancestyle CHAR(30) NOT NULL, PRIMARY KEY (dance_id) );"
+        )
+        dances = conn.execute(
+            """SELECT * FROM dance;"""
         )
 
     # Convert it into a list for readability
